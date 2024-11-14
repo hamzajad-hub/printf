@@ -1,29 +1,27 @@
-OBJS =	ft_puthex.c ft_putptr.c ft_putuni.c ft_printf.c\
-		ft_putchar.c ft_putnbr.c ft_putstr.c
-
-NAME = libftprintf.a
-
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-AR = ar rcs
+NAME = libftprintf.a
 
-RM = rm -rf
+SRCS =	ft_puthex.c ft_putptr.c ft_putuni.c ft_printf.c\
+		ft_putchar.c ft_putnbr.c ft_putstr.c
 
-all: $(NAME)
+OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS)
+	ar rc $(NAME) $(OBJS)
+
+all: $(NAME) $(OBJS)
 
 clean:
-	$(RM) $(OBJS)
+	rm -f $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re 
+.PHONY: all re clean fclean
 
 .SECONDARY: $(OBJS)
