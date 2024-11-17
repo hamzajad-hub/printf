@@ -6,13 +6,13 @@
 /*   By: hajadid <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:11:38 by hajadid           #+#    #+#             */
-/*   Updated: 2024/11/14 10:11:47 by hajadid          ###   ########.fr       */
+/*   Updated: 2024/11/16 02:17:56 by hajadid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	tchek(va_list ap, char format, int *len)
+static void	check(va_list ap, char format, int *len)
 {
 	if (format == '%')
 		ft_putchar('%', len);
@@ -53,7 +53,7 @@ int	ft_printf(const char *format, ...)
 		if ((format[i] == '%') && (format[i + 1] == '\0'))
 			return (len);
 		if (format[i] == '%')
-			tchek(ap, format[i++ + 1], &len);
+			check(ap, format[i++ + 1], &len);
 		else
 			ft_putchar(format[i], &len);
 		if (len == -1)
